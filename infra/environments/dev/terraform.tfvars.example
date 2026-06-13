@@ -1,0 +1,6 @@
+# Copy this file to terraform.tfvars and fill in your values.
+# terraform.tfvars is git-ignored — never commit real credentials.
+
+aws_region         = "eu-north-1"
+vpc_cidr           = "10.0.0.0/16"
+availability_zones = ["eu-north-1a", "eu-north-1b"]

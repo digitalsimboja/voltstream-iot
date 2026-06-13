@@ -1,4 +1,72 @@
+# ---- application files (private) ----
 cover-letter.md
 job.md
 SUNDAY-MGBOGU-CV.md
 TODO.md
+PROJECT.md
+
+# ---- Next.js ----
+dashboard/node_modules/
+dashboard/.next/
+dashboard/out/
+dashboard/.env.local
+dashboard/.env*.local
+
+# ---- Go ----
+bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+# Lambda build artifacts
+lambda/**/bootstrap
+lambda/**/*.zip
+# Go test cache
+*.test
+*.out
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+.env
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ---- Terraform ----
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+.terraform.lock.hcl
+terraform.tfvars
+**/terraform.tfvars
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# ---- OS ----
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+
+# ---- IDE / editors ----
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

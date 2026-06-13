@@ -172,19 +172,65 @@ voltstream/
 Prerequisites: Go 1.22+, Terraform 1.7+, Node.js 20+, AWS CLI configured
 
 ```bash
-# Clone
 git clone https://github.com/digitalsimboja/voltstream-iot.git
 cd voltstream-iot
+```
 
-# Run the simulator (500 machines, 2s interval)
-cd simulator && go run cmd/main.go --machines 500 --interval 2s
+---
 
-# Provision dev infrastructure
-cd infra/environments/dev
-terraform init && terraform apply
+## Makefile Commands
 
-# Start the dashboard
-cd dashboard && npm install && npm run dev
+All common tasks are available via `make` from the repo root.
+
+| Command | Description |
+|---|---|
+| `make sim` | Start the Go edge simulator — 500 machines, 2s interval |
+| `make api` | Start the Go ingestion API on `:8080` |
+| `make lambda-build` | Compile and zip the Lambda anomaly detector for deployment |
+| `make test` | Run all Go tests (`go test ./...`) |
+| `make lint` | Run `go vet` and Next.js ESLint |
+| `make infra-dev-up` | Terraform init + apply for the dev environment |
+| `make infra-dev-down` | Terraform destroy for the dev environment |
+| `make dashboard` | Install dependencies and start the Next.js dashboard |
+| `make voltctl-build` | Build the `voltctl` CLI binary to `bin/voltctl` |
+
+### Quick start (local dev)
+
+```bash
+# 1. Start the ingestion API
+make api
+
+# 2. In a second terminal — start the simulator
+make sim
+
+# 3. In a third terminal — start the dashboard
+make dashboard
+```
+
+### Infrastructure
+
+```bash
+# Provision the full dev environment on AWS
+make infra-dev-up
+
+# Tear it down
+make infra-dev-down
+```
+
+### Build & test
+
+```bash
+# Run all Go unit tests
+make test
+
+# Lint Go code + dashboard
+make lint
+
+# Build Lambda artifact (Linux amd64 binary + zip)
+make lambda-build
+
+# Build the voltctl CLI
+make voltctl-build
 ```
 
 ---
