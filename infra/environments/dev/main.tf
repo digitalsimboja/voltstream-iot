@@ -11,7 +11,7 @@ terraform {
   # backend "s3" {
   #   bucket         = "voltstream-tfstate"
   #   key            = "dev/terraform.tfstate"
-  #   region         = "eu-north-1"
+  #   region         = var.aws_region
   #   dynamodb_table = "voltstream-tfstate-lock"
   # }
 }
