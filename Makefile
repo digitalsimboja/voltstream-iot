@@ -1,4 +1,14 @@
-.PHONY: sim api lambda-build test lint infra-dev-up infra-dev-down dashboard
+.PHONY: up down logs sim api lambda-build test lint infra-dev-up infra-dev-down dashboard voltctl-build
+
+# --- docker compose ---
+up:
+	docker compose up --build
+
+down:
+	docker compose down
+
+logs:
+	docker compose logs -f
 
 # --- simulator ---
 sim:

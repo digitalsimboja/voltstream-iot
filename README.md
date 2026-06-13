@@ -184,8 +184,11 @@ All common tasks are available via `make` from the repo root.
 
 | Command | Description |
 |---|---|
-| `make sim` | Start the Go edge simulator — 500 machines, 2s interval |
-| `make api` | Start the Go ingestion API on `:8080` |
+| `make up` | Build both microservices and start the full stack via Docker Compose |
+| `make down` | Stop and remove all Docker Compose containers |
+| `make logs` | Tail live logs from all running containers |
+| `make sim` | Run the Go edge simulator directly (without Docker) |
+| `make api` | Run the Go ingestion API directly (without Docker) |
 | `make lambda-build` | Compile and zip the Lambda anomaly detector for deployment |
 | `make test` | Run all Go tests (`go test ./...`) |
 | `make lint` | Run `go vet` and Next.js ESLint |
@@ -194,7 +197,20 @@ All common tasks are available via `make` from the repo root.
 | `make dashboard` | Install dependencies and start the Next.js dashboard |
 | `make voltctl-build` | Build the `voltctl` CLI binary to `bin/voltctl` |
 
-### Quick start (local dev)
+### Quick start with Docker (recommended)
+
+```bash
+# Build both services and bring the stack up
+make up
+
+# Tail the logs (simulator → API telemetry stream)
+make logs
+
+# Tear everything down
+make down
+```
+
+### Quick start without Docker
 
 ```bash
 # 1. Start the ingestion API

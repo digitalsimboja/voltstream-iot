@@ -1,0 +1,28 @@
+services:
+  ingestion-api:
+    build:
+      context: ./ingestion-api
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      PORT: "8080"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+
+  simulator:
+    build:
+      context: ./simulator
+      dockerfile: Dockerfile
+    command:
+      - "--machines=500"
+      - "--interval=2s"
+      - "--target=http://ingestion-api:8080/telemetry"
+    depends_on:
+      ingestion-api:
+        condition: service_healthy
+    restart: on-failure
